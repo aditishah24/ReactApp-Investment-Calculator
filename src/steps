@@ -1,0 +1,117 @@
+<!-- PROJECT - INVESTMENT CALCULATOR (REACT)
+
+TASK ONE - SPLITTING THE APP INTO COMPONENTS  -->
+
+
+<!-- First Check all the main parts of your web application that you are working on.
+Next is to add that main components as components into your file under components folder.
+The Main components of this Web applications are HEADER, USERINPUT and RESULTSTABLE.
+
+Header.js
+
+After that start with your first component that is Header.js
+Add the basic steps of creating arrow function with const and exporting it.
+Then add the <header> part from App.js to the header.js file under return.
+Then we added a import statement on the top of header file to get the logo, and 
+we added ../.. to insert it from assests which is above component folder.
+Then we removed the <header> part from the App.js since we have shifted the function of 
+header in our Header component, and we added only the component name in App.js file as 
+<Header /> and we also imported Header file and folder in App.js. 
+
+
+UserInput.js
+
+Add the basic steps of creating arrow function with const and exporting it.
+Then add the <form> part from App.js to the UserInput.js file under return.
+Then we removed the <form> part from the App.js since we have shifted the function of 
+form in our UserInput component, and we added only the component name in App.js file as 
+<UserInput /> and we also imported UserInput file and folder in App.js.
+
+ResultsTable.js
+
+Add the basic steps of creating arrow function with const and exporting it.
+Then add the <table> part from App.js to the ResultsTable.js file under return.
+Then we removed the <table> part from the App.js since we have shifted the function of 
+table in our ResultsTable component, and we added only the component name in App.js file as <ResultsTable /> and we also imported ResultsTable file and folder in App.js.  -->
+
+
+
+<!-- TASK 2 - HADLE RESET AND SUBMIT BUTTON CLICK EVENTS -->
+
+<!-- We have our form in UserInput.js, so we dive in that component to add Events in that.
+Add onSubmit button (prop) in the form element.
+Then now we add an arrow function inside a function named submitHandler and pass that as value inside onSubmit={submitHandler}.
+Passing the default value in const submitHandler = (event) as event argument that is default.And on the that object event, we next write event.preventDefault() - for browsers
+default behaviour is prevented. We do this so for avoiding page reloads.So, now we add the js code that will be applied.
+Now we add an onClick listener to the reset button with a resetHandler as value insode onCLick as the same way we did before.
+
+To check that both event handlers are working we check it by adding console.log and then visit our page, and in console we see the string we passed in console.log, as an output when we click on the 2 buttons.
+
+We will have to use USeState further, for adding userInput and thereby we ad an onChange event to all the inputs, the the function that should occur when user changes the value.
+We will set this event handler common for all the inputs.
+We set 2 parameteres as argumnets in inputChnageHandler function - input(fow which the event occured) and value(for the values that was entered).
+Now, inside of directly passing the inputCHnageHandler to the function as object in onChange event, we create an arrow function inside onChange event and then point to inputCHangeHandler function with () to pass the arguments.
+This handler will only be executed when the input value changes.
+We pass some data in the function inputChangeHanlder().
+The first value relates to the input argument  we created and add the id as identifier in it (current-savings). The second value should relate to the value argument, for this we use default event object and add event.target.value as 2nd element.
+
+current-savings as value to the input and
+event.target.value as value to the value.
+
+Now we add this handler in every inputs in the UserInput.js and update the identifier, for the input value that is copy the id at the first position.
+
+THE LOGIC INSIDE THE HANDLERS(onCLick and onSubmit BUTTONS) -->
+
+
+
+<!-- TASK - 3 MANAGING STATE -->
+
+<!-- Now we use useState to manage the hooks and the hadlers we made above.
+We will build one big useState for managing every input and use different key.
+Now add all the id's from input that we passed as identifier and assign values to it in useState as a key:value pair.
+
+Now we use array destructuring for userInputs.We call setUserInput under the changeInput handler that we created with the input and value parameters in that we add setUserInput(),which will store the default values we mentioned in our UseState.
+In the changeHandler in setUserInput we set our state to new object which should be based on new object, to keep the values as it is when we are not changing them.
+Make it as function and use previously stored input as prevInput  and then adding logic to the object which returnd to the newState.
+We use spread operator with prevInput to store input.
+We now use a js property, so that we can add dynamically access a property name, by setting it as [input] : value.
+
+We also use our useState in reset button, to go to its initial values as before.
+We define a const function on top so that we can use the initialized value everytime by function name.
+To pass the updated state back to input we use value = userInput our state under the input handler and store it with the id. Repeat it for all the inputs. -->
+
+
+<!-- LIFTING THE STATE UP -->
+
+<!-- We use this bcz, we have userInput values in the UserInput component, but we also need it in resultsTable to work on values and to apply the formulas mentioned in App.js for an output.
+We need to pass props in userInput function in UserInput.js 
+This is because you have a function that is defined in userInput buut called in App.js and its the calucalteHandler function that should be handled at the end.
+Therefor we have onCalculate as prop in submitHandler and then pass the userInput state in it.
+In App.js with userInput we pass our prop onCalculate with the calculateHandler.
+
+In App component we call useState to store our Yearly data.
+Call the setResults data at the end in App.js with the yearlyData, which would be managed as state.
+We will use the Derived approach of calling the yearly data by using the same usestate as we used in userInput and pass the userInput as object to the calculateHandler and store yearlyData in App.
+We are wrapping the yearlyData in an if check that will occur when the data is not null. -->
+
+
+<!-- TASK 4 - OUTPUT RESULT CONDITIONALLY -->
+
+<!-- We now pass the statement in App.js bellow userInput that if userInput is null return the p, else print the ResultTable.
+Now we will pass the calculation data to the ResuktsTable to output the data in the table.
+We add a new prop to the Resultstable as data.
+Now add props in ResultstAble.js file in function.
+We use this   {props.data.map()} to map the data and pass props of data from App.js, and then pass the row tr data in that props.
+And in the row, instead of YEAR NUMBER we use yearData.year for the number of the year. - which is bcz we have a key in App.js.
+And thus, we switch every row element as per the key passed in the App.js format.
+Now for INITIAL INVESTMENT we have our initial invesment in userInput in a function where we store 'current-savings' so we pass this as prop in App.js in ResultsTable. And thereby we can deduct and use props.initialInvestment in ResultsTable.js.
+Add a key prop.
+Now we use a formatter to format the data in ResultsTable by adding formats and use it in every row data. -->
+
+<!-- TASK 5 - STYLING DATA -->
+
+<!-- Add inline style in p using double {{}} and target the css properties.
+Seprating css according to the components. -->
+
+
+<!-- DONE -->
